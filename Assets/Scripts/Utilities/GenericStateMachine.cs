@@ -15,7 +15,7 @@ public class GenericStateMachine<T> where T : EnemyController
         this.Owner = owner;
     }
 
-    protected void Update() => currentState?.Update(); 
+    public void Update() => currentState?.Update(); 
 
     protected void ChangeState(IState newState)
     {
