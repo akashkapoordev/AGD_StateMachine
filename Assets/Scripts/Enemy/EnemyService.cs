@@ -13,7 +13,7 @@ namespace StatePattern.Enemy
         private UIService UIService => GameService.Instance.UIService;
         private LevelService LevelService => GameService.Instance.LevelService;
 
-        private List<EnemyController> activeEnemies;
+        public List<EnemyController> activeEnemies;
         private int spawnedEnemies;
 
         public EnemyService()
@@ -63,6 +63,9 @@ namespace StatePattern.Enemy
                 case EnemyType.Hitman:
                     enemy = new HitmanController(enemyScriptableObject);
                     break;
+                case EnemyType.Robot:
+                    enemy = new CloneManController(enemyScriptableObject);
+                    break;
                 default:
                     enemy = new EnemyController(enemyScriptableObject);
                     break;
@@ -70,7 +73,7 @@ namespace StatePattern.Enemy
 
             return enemy;
         }
-
+        public void AddEnemy(EnemyController enemy) => activeEnemies.Add(enemy);
         public void EnemyDied(EnemyController deadEnemy)
         {
             activeEnemies.Remove(deadEnemy);

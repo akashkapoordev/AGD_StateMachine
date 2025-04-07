@@ -31,16 +31,12 @@ public class TeleportingState<T> : IState where T : EnemyController
        
     }
 
-    // Teleports the owner to a random NavMesh position within a specified radius.
     private void TeleportToRandomPosition() => Owner.Agent.Warp(GetRandomNavMeshPoint());
-
-    // Generates a random NavMesh position within the teleporting radius.
     private Vector3 GetRandomNavMeshPoint()
     {
         Vector3 randomDirection = Random.insideUnitSphere * 5f + Owner.Position;
         NavMeshHit hit;
 
-        // Try to find a valid NavMesh position within the radius, return spawn position if not found.
         if (NavMesh.SamplePosition(randomDirection, out hit, 5f, NavMesh.AllAreas))
             return hit.position;
 
