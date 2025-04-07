@@ -29,6 +29,7 @@ namespace StatePattern.Enemy
 
         public override void PlayerEnteredRange(PlayerController targetToSet)
         {
+            Debug.Log(targetToSet.ToString());
             base.PlayerEnteredRange(targetToSet);
             stateMachine.ChangeState(States.SHOOTING);
         }
